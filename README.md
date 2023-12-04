@@ -3,7 +3,7 @@ Monitor room by room temperature / humidity with web graphs
 
 ![](/webgraph.png)
 
-Using Raspberry Pi Pico-W's with DHT22 sesnosrs.
+Using Raspberry Pi Pico-W's with DHT22 sensors.
 
 Requirements
 
