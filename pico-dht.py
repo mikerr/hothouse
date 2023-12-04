@@ -21,6 +21,7 @@ if not sta_if.isconnected():
 sensor_temp = machine.ADC(4)
 sensor = dht.DHT22(machine.Pin(0))
 
+# change name for each sensor
 sensorid = "back room"
 
 time.sleep(2)
