@@ -21,10 +21,10 @@ if not sta_if.isconnected():
 sensor_temp = machine.ADC(4)
 sensor = dht.DHT22(machine.Pin(0))
 
-# change name for each sensor
-sensorid = "back room"
+# change on each sensor
+sensorid = "room name"
 
-time.sleep(2)
+time.sleep(5)
 while True:
     
     try:
@@ -32,16 +32,15 @@ while True:
         temp = sensor.temperature()
         hum = sensor.humidity()
     except:
-        conversion_factor = 3.3 / (65535)
-        reading = sensor_temp.read_u16() * conversion_factor 
-        temperature = 20 - (reading - 0.706)/0.001721
-        temp = round(temperature,1)
-        hum = 50
+        print("error: sensor not found")
     
     print(temp,hum)
-    
     dht_readings = {'room': sensorid, 'temperature':temp, 'humidity': hum} 
-    request = urequests.post( '/upload.php', json = dht_readings, headers = HTTP_HEADERS )  
-    request.close() 
+   
+    try:
+        request = urequests.post( '/upload.php', json = dht_readings, headers = HTTP_HEADERS )  
+        request.close()
+    except:
+        print ("error: upload failed - offline ?")
     
     time.sleep(300)
