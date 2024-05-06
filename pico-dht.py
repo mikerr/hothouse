@@ -24,17 +24,16 @@ sensor = dht.DHT22(machine.Pin(0))
 # change on each sensor
 sensorid = "room name"
 
-time.sleep(5)
 while True:
-    
+    time.sleep(5)
     try:
         sensor.measure()
         temp = sensor.temperature()
         hum = sensor.humidity()
     except:
         print("error: sensor not found")
+        continue
     
-    print(temp,hum)
     dht_readings = {'room': sensorid, 'temperature':temp, 'humidity': hum} 
    
     try:
